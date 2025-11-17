@@ -1,5 +1,5 @@
 "use client";
-import FloatingLines from '../components/FloatingLines';
+import FloatingLines from '../components/ui/FloatingLines';
 
 export default function Home() {
 
