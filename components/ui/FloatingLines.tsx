@@ -101,7 +101,7 @@ vec3 getLineColor(float t, vec3 baseColor) {
   return gradientColor * 0.5;
 }
 
-  float wave(vec2 uv, float offset, vec2 screenUv, vec2 mouseUv, bool shouldBend) {
+float wave(vec2 uv, float offset, vec2 screenUv, vec2 mouseUv, bool shouldBend) {
   float time = iTime * animationSpeed;
 
   float x_offset   = offset;
@@ -254,7 +254,7 @@ function hexToVec3(hex: string): Vector3 {
 }
 
 export default function FloatingLines({
-  linesGradient,
+  linesGradient = ['#447794', '#2D5B75', '#123249', '#061222'],
   enabledWaves = ['top', 'middle', 'bottom'],
   lineCount = [6],
   lineDistance = [5],
