@@ -1,7 +1,7 @@
 "use client";
 import FloatingLines from '@/components/ui/FloatingLines';
-import HeroContent from '@/components/ui/heroContent';
-import { div } from 'three/tsl';
+import HeroContent from '@/components/heroContent';
+import { NavbarRes } from '@/components/navbar';
 
 export default function Home() {
   return (
@@ -20,12 +20,10 @@ export default function Home() {
           />
         </div>
 
-        {/* Content overlay */}
-         <div style={{ position: 'absolute', inset: 0, zIndex: 10, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{ width: '100%', maxWidth: '1200px', padding: '2rem' }}>
-          <HeroContent />
-        </div>
+        <div className='bg-gradient-to-b from-[#123249] via-[#2D5B75] to-transparent border-b border-[#447794]/30 backdrop-blur-md' style={{ position: 'relative', zIndex: 20 }}>
+        <NavbarRes />
       </div>
+
       </div>
     </>
   );
