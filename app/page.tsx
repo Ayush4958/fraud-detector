@@ -1,6 +1,6 @@
 "use client";
 import FloatingLines from '@/components/ui/FloatingLines';
-import HeroContent from '@/components/heroContent';
+import { HeroContent } from '@/components/heroContent';
 import { NavbarRes } from '@/components/navbar';
 
 export default function Home() {
@@ -20,8 +20,14 @@ export default function Home() {
           />
         </div>
 
+    {/* Navbar */}
         <div className='bg-gradient-to-b from-[#123249] via-[#2D5B75] to-transparent border-b border-[#447794]/30 backdrop-blur-md' style={{ position: 'relative', zIndex: 20 }}>
         <NavbarRes />
+      </div>
+
+      {/* Hero Content */}
+      <div style={{ position: 'relative', zIndex: 10 }}>
+        <HeroContent/>
       </div>
 
       </div>
