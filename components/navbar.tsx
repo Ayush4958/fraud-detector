@@ -36,7 +36,7 @@ export function NavbarRes() {
             <NavBody>
                 <NavbarLogo />
                 <NavItems items={navItems} />
-                <div className="flex items-center gap-5 w-5">
+                <div className="flex items-center gap-5 w-5 text-lg">
                     <NavbarButton variant="primary">Login</NavbarButton>
                 </div>
             </NavBody>

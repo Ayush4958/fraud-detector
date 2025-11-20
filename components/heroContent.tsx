@@ -1,13 +1,23 @@
-"use client";
-import { Button } from '@/components/ui/button';
-
-export default function HeroContent() {
+import { EncryptedText } from "@/components/ui/encrypted-text";
+import React from "react";
+ 
+export function HeroContent() {
   return (
     <>
-      <h1 className='text-center text-white font-mono text-4xl '>
-        This is Going to be Center text
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, architecto deserunt! Dolore iusto minima sunt, nesciunt consequuntur odit quidem expedita magnam sint dicta possimus fugiat vel atque numquam ex, at necessitatibus velit dolores. Quae, nostrum.
-      </h1>
+    <p className="mx-auto mt-10 max-w-5xl font-extrabold py-7 text-8xl text-center text-[#404e58e5]">
+      <EncryptedText
+        text="Fraud Detector Powered By AI"
+        encryptedClassName="dark:text-[#404e58e5]"
+        revealedClassName="dark:text-[#a4cae7] "
+        revealDelayMs={50}
+      />
+    </p>
+    <p className="mx-auto  max-w-4xl font-sans font-semibold py-10 text-lg text-center text-[#d3ecff]">
+      Stop fraud before it hurts your wallet. Our advanced AI engine analyzes every bill in seconds, spotting anomalies, double charges, and hidden manipulations.Protect your money with real-time, transparent insights you can trust.
+    </p>
+    <div>
+
+    </div>
     </>
   );
 }
