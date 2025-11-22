@@ -2,6 +2,7 @@
 import FloatingLines from '@/components/ui/FloatingLines';
 import { HeroContent } from '@/components/heroContent';
 import { NavbarRes } from '@/components/navbar';
+import {GlareCardDemo} from '@/components/feature' ;
 
 export default function Home() {
   return (
@@ -28,6 +29,19 @@ export default function Home() {
       {/* Hero Content */}
       <div style={{ position: 'relative', zIndex: 10 }}>
         <HeroContent/>
+      </div>
+
+      {/* Feature */}
+      <div className="text-center ">
+        <p className="text-white font-bold font-mono">
+        Features
+        </p>
+      </div>
+
+      <div className='flex flex-column gap-2 align-center justify-center text-center' style={{ position: 'relative', zIndex: 10 }}>
+       <GlareCardDemo />
+       <GlareCardDemo />
+       <GlareCardDemo />
       </div>
 
       </div>
