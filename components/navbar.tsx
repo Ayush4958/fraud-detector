@@ -16,7 +16,7 @@ export function NavbarRes() {
     const navItems = [
         {
             name: "Features",
-            link: "/features",
+            link: "#features",
         },
         {
             name: "Pricing",
@@ -36,7 +36,7 @@ export function NavbarRes() {
             <NavBody>
                 <NavbarLogo />
                 <NavItems items={navItems} />
-                <div className="flex items-center gap-5 w-5 text-lg">
+                <div className="flex items-center gap-5 w-17 text-lg">
                     <NavbarButton variant="primary">Login</NavbarButton>
                 </div>
             </NavBody>
