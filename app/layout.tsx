@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Floating Lines Demo",
-  description: "Floating Lines Background",
+  title: "Fraud Detector",
+  description: "Fraud Detector Powered by AI",
 };
 
 export default function RootLayout({

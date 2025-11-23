@@ -1,50 +1,51 @@
-"use client";
-import FloatingLines from '@/components/ui/FloatingLines';
-import { HeroContent } from '@/components/heroContent';
-import { NavbarRes } from '@/components/navbar';
-import {GlareCardDemo} from '@/components/feature' ;
+"use client"
+import FloatingLines from "@/components/ui/FloatingLines"
+import {HeroContent} from "@/components/heroContent"
+import { NavbarRes } from "@/components/navbar"
+import FeaturesSection from "@/components/feature"
 
 export default function Home() {
   return (
-    <>
-      <div style={{ width: '100%', minHeight: '100vh', position: 'relative' }}>
-        {/* Animated background */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-          <FloatingLines
-            enabledWaves={['top', 'middle', 'bottom']}
-            lineCount={[6, 7, 8]}
-            lineDistance={[8, 6, 4]}
-            bendRadius={5.0}
-            bendStrength={-0.5}
-            interactive={true}
-            parallax={true}
-          />
+    <div style={{ width: "100%", minHeight: "100vh", position: "relative" }}>
+      {/* Animated background - fixed to viewport */}
+      <div style={{ position: "fixed", inset: "0", zIndex: 0 }}>
+        <FloatingLines
+          enabledWaves={["top", "middle", "bottom"]}
+          lineCount={[6, 7, 8]}
+          lineDistance={[8, 6, 4]}
+          bendRadius={5.0}
+          bendStrength={-0.5}
+          interactive={true}
+          parallax={true}
+        />
+      </div>
+
+      {/* Navbar */}
+      <NavbarRes />
+
+      {/* Main Content Flow */}
+      <div style={{ position: "relative", zIndex: 10 }}>
+        {/* Hero Section */}
+        <div
+          style={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            // justifyContent: "center",
+            alignItems: "center",
+            paddingTop: "20px",
+          }}
+        >
+          <div style={{ width: "100%", maxWidth: "1200px", padding: "2rem" }}>
+            <HeroContent />
+          </div>
         </div>
 
-    {/* Navbar */}
-        <div className='bg-gradient-to-b from-[#123249] via-[#2D5B75] to-transparent border-b border-[#447794]/30 backdrop-blur-md' style={{ position: 'relative', zIndex: 20 }}>
-        <NavbarRes />
+        {/* Features Section */}
+        <div id="features">
+        <FeaturesSection />
+        </div>
       </div>
-
-      {/* Hero Content */}
-      <div style={{ position: 'relative', zIndex: 10 }}>
-        <HeroContent/>
-      </div>
-
-      {/* Feature */}
-      <div className="text-center ">
-        <p className="text-white font-bold font-mono">
-        Features
-        </p>
-      </div>
-
-      <div className='flex flex-column gap-2 align-center justify-center text-center' style={{ position: 'relative', zIndex: 10 }}>
-       <GlareCardDemo />
-       <GlareCardDemo />
-       <GlareCardDemo />
-      </div>
-
-      </div>
-    </>
-  );
+    </div>
+  )
 }
