@@ -30,12 +30,6 @@ export function NavbarRes() {
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const handleLoginClick = () => {
-    if (typeof window !== "undefined" && (window as any).openLoginModal) {
-      ;(window as any).openLoginModal()
-    }
-  }
-
     return (
         <Navbar>
             {/* Desktop Navigation */}
@@ -43,7 +37,7 @@ export function NavbarRes() {
                 <NavbarLogo />
                 <NavItems items={navItems} />
                 <div className="flex items-center gap-5 w-17 text-lg">
-                    <NavbarButton variant="primary" onClick={handleLoginClick}>Login</NavbarButton>
+                    <NavbarButton variant="primary" >Login</NavbarButton>
                 </div>
             </NavBody>
 
@@ -75,7 +69,6 @@ export function NavbarRes() {
                         <NavbarButton
                             onClick={() => {
                 setIsMobileMenuOpen(false)
-                handleLoginClick()
               }}
                             variant="primary"
                             className="w-full"
