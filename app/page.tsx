@@ -3,6 +3,7 @@ import FloatingLines from "@/components/ui/FloatingLines"
 import {HeroContent} from "@/components/heroContent"
 import { NavbarRes } from "@/components/navbar"
 import FeaturesSection from "@/components/feature"
+import SignUp from "@/components/auth/signUp"
 
 export default function Home() {
   return (
@@ -19,6 +20,8 @@ export default function Home() {
           parallax={true}
         />
       </div>
+
+
 
       {/* Navbar */}
       <NavbarRes />
@@ -46,6 +49,13 @@ export default function Home() {
         <FeaturesSection />
         </div>
       </div>
+
+      <section className="w-full py-20 px-4 relative z-20 bg-gradient-to-b from-transparent via-[#061222]/30 to-transparent">
+          <div className="max-w-7xl mx-auto flex justify-center">
+            <SignUp />
+          </div>
+        </section>
+
     </div>
   )
 }
