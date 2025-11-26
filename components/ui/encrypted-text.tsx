@@ -25,7 +25,7 @@ type EncryptedTextProps = {
 };
 
 const DEFAULT_CHARSET =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-={}[];:,.<>/?";
+  "IAYBDERREWOPROTCETEDDUARFIAYBDERREWOPROTCETEDDUARF";
 
 function generateRandomCharacter(charset: string): string {
   const index = Math.floor(Math.random() * charset.length);
