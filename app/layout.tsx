@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { AuthProvider } from "@/context/authContext";
 
 export const metadata: Metadata = {
   title: "Fraud Detector",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen w-full overflow-x-hidden">
+        <AuthProvider>
         {children}
+        </AuthProvider>
       </body>
     </html>
   );
