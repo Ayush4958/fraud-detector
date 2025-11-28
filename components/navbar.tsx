@@ -10,10 +10,11 @@ import {
     MobileNavToggle,
     MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { useState } from "react";
+import { useState  , useEffect} from "react";
 import SignUp from "./auth/signUp";
-import { section } from "motion/react-client";
 import ModalWrapper from "@/wrapper/modalWrapper";
+import { logout , getUser } from "@/services/auth"
+import { useAuth } from "@/context/authContext";
 
 export function NavbarRes() {
     const navItems = [
@@ -33,6 +34,8 @@ export function NavbarRes() {
 
     const [showLogin, setShowLogin] = useState(false);
 
+     const { user, loading } = useAuth();
+
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const toggleLogin = () => setShowLogin(prev => !prev);
 
@@ -44,7 +47,9 @@ export function NavbarRes() {
                     <NavbarLogo />
                     <NavItems items={navItems} />
                     <div className="flex items-center gap-5 w-17 text-lg">
-                        <NavbarButton variant="primary" onClick={toggleLogin}>Login</NavbarButton>
+                        {user ? 
+                        <NavbarButton variant="primary" onClick={logout}>Logout</NavbarButton> 
+                        : <NavbarButton variant="primary" onClick={toggleLogin}>Login</NavbarButton>}
                     </div>
                 </NavBody>
 
