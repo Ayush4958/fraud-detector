@@ -18,3 +18,5 @@ export async function extractText(fileBuffer) {
 
   return response.choices[0].message.content;
 }
+ 
+
