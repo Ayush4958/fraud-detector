@@ -2,8 +2,6 @@ import { getUser } from "../services/authUser.js";
 import { scanInvoice } from "../services/scan.js";
 import supabase from "../lib/supabase.js";
 
-// import { getUser } from "../services/authUser.js";
-
 export async function scanDocument(req, res) {
 
   try {
