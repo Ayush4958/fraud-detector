@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react"
-import { signup , login } from "@/services/auth"
+import { signup , login , getUser } from "@/services/auth"
 import { PasswordInput } from "@/components/ui/passwordInput"
 
 export default function SignUp({ onClose }: { onClose?: () => void }) {
@@ -216,8 +216,11 @@ export default function SignUp({ onClose }: { onClose?: () => void }) {
 
           {/* Password Field */}
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" placeholder="********" type="password" />
+           <Label htmlFor="password">Password</Label>
+            <PasswordInput id="password" />
+            {errors.password && (
+              <p className="text-red-500 text-[12px]">{errors.password}</p>
+            )}
           </LabelInputContainer>
 
           {/* Submit Button */}
