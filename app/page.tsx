@@ -1,8 +1,8 @@
 "use client"
 import FloatingLines from "@/components/ui/FloatingLines"
-import {HeroContent} from "@/components/heroContent"
-import { NavbarRes } from "@/components/navbar"
-import FeaturesSection from "@/components/feature"
+import {HeroContent} from "@/components/pages/heroContent"
+import { NavbarRes } from "@/components/pages/navbar"
+import FeaturesSection from "@/components/pages/feature"
 import SignUp from "@/components/auth/signUp"
 
 export default function Home() {
