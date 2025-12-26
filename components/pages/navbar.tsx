@@ -23,12 +23,12 @@ export function NavbarRes() {
             link: "#features",
         },
         {
-            name: "Pricing",
-            link: "/pricing",
+            name: "Scans",
+            link: "/scans",
         },
         {
-            name: "Contact",
-            link: "/contact",
+            name: "Counter Bill",
+            link: "/counter",
         },
     ];
 
@@ -78,15 +78,9 @@ export function NavbarRes() {
                             </a>
                         ))}
                         <div className="flex w-full flex-col gap-3 pt-4 border-t border-[#447794]/30">
-                            <NavbarButton
-                                onClick={() => {
-                                    setIsMobileMenuOpen(false)
-                                }}
-                                variant="primary"
-                                className="w-full"
-                            >
-                                Login
-                            </NavbarButton>
+                             {user ? 
+                        <NavbarButton variant="primary" onClick={logout}>Logout</NavbarButton> 
+                        : <NavbarButton variant="primary" onClick={toggleLogin}>Login</NavbarButton>}
                         </div>
                     </MobileNavMenu>
                 </MobileNav>

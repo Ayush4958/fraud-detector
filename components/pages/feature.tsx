@@ -40,12 +40,6 @@ export default function FeaturesSection() {
       description: "Create and manage custom fraud detection rules tailored to your needs.",
       image: "/custom.png",
     },
-    {
-      id: 7,
-      title: "24/7 Support",
-      description: "Round-the-clock expert support and incident response team.",
-      image: "/customer.png",
-    },
   ]
 
   return (
