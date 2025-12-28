@@ -4,6 +4,7 @@ import {HeroContent} from "@/components/pages/heroContent"
 import { NavbarRes } from "@/components/pages/navbar"
 import FeaturesSection from "@/components/pages/feature"
 import ScanPage  from '@/components/pages/scan'
+import CounterPage from "@/components/pages/counter"
 import SignUp from "@/components/auth/signUp"
 
 export default function Home() {
@@ -47,6 +48,8 @@ export default function Home() {
         <div id="features">
         <FeaturesSection />
         </div>
+          {/* <ScanPage /> */}
+        <CounterPage/>
       </div>
     </div>
   )
