@@ -1,3 +1,4 @@
+"use client"
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import React from "react";
 import {DashboardButton} from "@/components/ui/dashButton"
