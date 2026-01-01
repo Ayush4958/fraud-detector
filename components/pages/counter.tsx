@@ -25,6 +25,7 @@ export default function CounterPage() {
     const res = await generateCounterBill(scanId, token);
     setReport(res.data);
     setLoading(false);
+    console.log(res.data)
   };
 
   return (
@@ -42,64 +43,60 @@ export default function CounterPage() {
         {loading ? "Analyzing..." : "Generate Corrections"}
       </Button>
 
-      {/* {report && (
-        <div className="bg-zinc-900 p-6 rounded space-y-4 text-sm text-white">
+     {report && (
+  <div className="bg-zinc-900 p-6 rounded space-y-6 text-sm text-white">
 
-          <div className="flex justify-between">
-            <p><b>Vendor:</b> {report.vendor_name}</p>
-            <p><b>Severity Score:</b> {report.fraud_report.severity_score}/100</p>
-          </div>
+    <div className="grid grid-cols-2 gap-4">
+      <p><b>Fraud Detected:</b> {String(report.is_fraudulent)}</p>
+      <p><b>Severity Score:</b> {report.severity_score}/100</p>
+      <p><b>Original Total:</b> ₹{report.original_total}</p>
+      <p><b>Corrected Total:</b> ₹{report.corrected_total}</p>
+      <p className="col-span-2 text-red-400">
+        Estimated Overcharge: ₹{report.estimated_overcharge}
+      </p>
+    </div>
 
-          <div>
-            <p className="font-semibold text-red-400 mb-2">
-              ❌ Detected Issues
-            </p>
-
-            {report.fraud_report.suspicious_terms.map((term: string, i: number) => (
-              <div
-                key={i}
-                className="border border-red-500/30 rounded p-2 mb-2 bg-red-500/10"
-              >
-                {term}
-              </div>
-            ))}
-
-            {report.fraud_report.invalid_gst_values.map((gst: string, i: number) => (
-              <div
-                key={i}
-                className="border border-yellow-500/30 rounded p-2 mb-2 bg-yellow-500/10"
-              >
-                Invalid GST: {gst}
-              </div>
-            ))}
-          </div>
-
-          <div>
-            <p className="font-semibold text-green-400 mb-2">
-              ✔ AI Suggested Corrections
-            </p>
-
-            {report.fraud_report.suspicious_terms.map((term: string, i: number) => (
-              <div key={i} className="bg-green-500/10 p-2 rounded mb-2">
-                Remove or replace <b>{term}</b> with verified service charge
-              </div>
-            ))}
-
-            {report.fraud_report.invalid_gst_values.map((gst: string, i: number) => (
-              <div key={i} className="bg-green-500/10 p-2 rounded mb-2">
-                Replace GST value <b>{gst}</b> with valid GST slab (18%)
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-zinc-800 p-3 rounded">
-            <p className="font-semibold mb-1">AI Reasoning</p>
-            <p className="text-zinc-300">
-              {report.fraud_report.reasoning}
-            </p>
-          </div>
+    {/* Removed Items */}
+    <div>
+      <h3 className="font-semibold text-red-400 mb-2">❌ Removed Charges</h3>
+      {report.removed_items.map((item: any, i: number) => (
+        <div key={i} className="border border-red-500/30 p-2 mb-2 rounded bg-red-500/10">
+          {item.label} — ₹{item.amount}
         </div>
-      )} */}
+      ))}
+    </div>
+
+    {/* Corrected Items */}
+    <div>
+      <h3 className="font-semibold text-green-400 mb-2">✔ Corrected Invoice Values</h3>
+      {report.corrected_items.map((item: any, i: number) => (
+        <div key={i} className="border border-green-500/30 p-2 mb-2 rounded bg-green-500/10">
+          {item.label} — ₹{item.amount}
+        </div>
+      ))}
+    </div>
+
+    {/* Suspicious Terms */}
+    <div>
+      <h3 className="font-semibold text-yellow-400 mb-2">⚠ Suspicious Terms</h3>
+      {report.suspicious_terms.map((term: string, i: number) => (
+        <div key={i} className="bg-yellow-500/10 p-2 rounded mb-2">
+          {term}
+        </div>
+      ))}
+    </div>
+
+    {/* Explanation */}
+    <div className="bg-zinc-800 p-3 rounded">
+      <h3 className="font-semibold mb-1">AI Reasoning</h3>
+      {report.explanation.map((line: string, i: number) => (
+        <p key={i} className="text-zinc-300">{line}</p>
+      ))}
+    </div>
+  </div>
+)}
+
+
     </div>
   );
 }
