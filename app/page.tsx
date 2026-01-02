@@ -48,7 +48,7 @@ export default function Home() {
         <div id="features">
         <FeaturesSection />
         </div>
-          {/* <ScanPage /> */}
+          <ScanPage />
         <CounterPage/>
       </div>
     </div>
