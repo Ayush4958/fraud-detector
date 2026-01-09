@@ -1,5 +1,6 @@
 import { generateLetter } from "./letterAi.js";
-
+import { extractOriginalTotalByLabel } from "./hybridCorrections.js"
+ 
 /**
  * Main entry: builds the hybrid counter bill.
  */
@@ -15,7 +16,7 @@ export async function buildCounterBill({ originalText, fraudReport }) {
 
   // 1. Extract all numbers from the text (rough heuristic)
   const allAmounts = extractNumbers(originalText);
-  const originalTotal = allAmounts.length ? Math.max(...allAmounts) : null;
+  const originalTotal = extractOriginalTotalByLabel(originalText);
 
   // 2. Estimate overcharge from fraud report (hybrid: backend math)
   const estimatedOvercharge =
