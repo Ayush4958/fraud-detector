@@ -280,7 +280,7 @@ export default function ScanPage() {
                       }}
                     />
                   </div>
-                  <p className="text-xs text-white/60 mt-2">{out.result.fraud_report.severity_score}/10</p>
+                  <p className="text-xs text-white/60 mt-2">{out.result.fraud_report.severity_score}/100</p>
                 </div>
 
                 <div className="p-3 bg-black/40 rounded-lg border border-white/10">
