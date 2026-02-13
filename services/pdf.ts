@@ -1,6 +1,11 @@
-export async function downloadPdf(counterId: string) {
+export async function downloadPdf(counterId: string, token: string) {
   const res = await fetch(
-    `http://localhost:5000/api/pdf/${counterId}`
+    `http://localhost:5000/api/pdf/${counterId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
 
   if (!res.ok) {

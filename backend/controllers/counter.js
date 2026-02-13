@@ -8,14 +8,14 @@ export async function generateCounterBill(req, res) {
 
     const user = await getUser(req);
 
-  if (!user) {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized. Please login first."
-    });
-  }
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized. Please login first."
+      });
+    }
 
-  const userId = user.id;
+    const userId = user.id;
 
     // ✅ 2. Fetch scan from DB
     const { data: scan, error: scanError } = await supabase
@@ -75,7 +75,7 @@ export async function generateCounterBill(req, res) {
     return res.status(200).json({
       success: true,
       message: "Counter bill generated successfully",
-      counter_bill_id: counterRow.id,
+      counterId: counterRow.id,
       data: counterResult,
     });
 

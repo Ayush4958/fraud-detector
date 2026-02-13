@@ -1,11 +1,8 @@
 "use client"
 import FloatingLines from "@/components/ui/FloatingLines"
-import {HeroContent} from "@/components/pages/heroContent"
+import { HeroContent } from "@/components/pages/heroContent"
 import { NavbarRes } from "@/components/pages/navbar"
 import FeaturesSection from "@/components/pages/feature"
-import ScanPage  from '@/components/pages/scan'
-import CounterPage from "@/components/pages/counter"
-import SignUp from "@/components/auth/signUp"
 
 export default function Home() {
   return (
@@ -34,7 +31,6 @@ export default function Home() {
             minHeight: "100vh",
             display: "flex",
             flexDirection: "column",
-            // justifyContent: "center",
             alignItems: "center",
             paddingTop: "20px",
           }}
@@ -46,10 +42,8 @@ export default function Home() {
 
         {/* Features Section */}
         <div id="features">
-        <FeaturesSection />
+          <FeaturesSection />
         </div>
-          <ScanPage />
-        <CounterPage/>
       </div>
     </div>
   )

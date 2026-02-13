@@ -4,9 +4,10 @@ export async function generateCounterBill(scanId: string, token: string) {
     {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({scanId : scanId})
+      body: JSON.stringify({ scanId: scanId })
     },
   );
   return res.json();

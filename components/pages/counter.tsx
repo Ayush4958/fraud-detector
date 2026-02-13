@@ -2,9 +2,11 @@
 
 import { useState } from "react"
 import { generateCounterBill } from "@/services/counter"
+import { downloadPdf } from "@/services/pdf"
 import { Button } from "@/components/ui/button"
 import { supabase } from "@/lib/supabaseClient"
 import { motion } from "framer-motion"
+import { Download } from "lucide-react"
 
 function AnimatedShapes() {
   return (
@@ -41,6 +43,8 @@ export default function CounterPage() {
   const [scanId, setScanId] = useState("")
   const [report, setReport] = useState<any>(null)
   const [loading, setLoading] = useState(false)
+  const [downloadLoading, setDownloadLoading] = useState(false)
+  const [counterId, setCounterId] = useState("")
 
   const handleGenerate = async () => {
     setLoading(true)
@@ -56,8 +60,30 @@ export default function CounterPage() {
 
     const res = await generateCounterBill(scanId, token)
     setReport(res.data)
+    setCounterId(res.counterId || scanId)
     setLoading(false)
     console.log(res.data)
+  }
+
+  const handleDownloadPdf = async () => {
+    setDownloadLoading(true)
+    try {
+      const { data: session } = await supabase.auth.getSession()
+      const token = session?.session?.access_token
+
+      if (!token) {
+        alert("Please login first")
+        setDownloadLoading(false)
+        return
+      }
+
+      await downloadPdf(counterId, token)
+    } catch (error) {
+      console.error("Download failed:", error)
+      alert("Failed to download PDF. Please try again.")
+    } finally {
+      setDownloadLoading(false)
+    }
   }
 
   return (
@@ -109,6 +135,18 @@ export default function CounterPage() {
             transition={{ duration: 0.8 }}
             className="bg-black/30 backdrop-blur-md p-8 rounded-2xl border border-emerald-500/[0.1] space-y-6 text-sm text-white shadow-2xl"
           >
+            {/* Download PDF Button */}
+            <div className="flex justify-end mb-4">
+              <Button
+                onClick={handleDownloadPdf}
+                disabled={downloadLoading}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded-xl px-6 py-3 font-semibold flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                {downloadLoading ? "Downloading..." : "Download Dispute Letter PDF"}
+              </Button>
+            </div>
+
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-4">
               <motion.div

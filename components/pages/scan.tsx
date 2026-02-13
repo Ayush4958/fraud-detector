@@ -256,16 +256,19 @@ export default function ScanPage() {
                   <p>
                     <b>Fraud Detected:</b>
                   </p>
-                  <span
-                    className={cn(
+                  {out?.result?.fraud_report && (
+                    <div className={cn(
                       "px-3 py-1 rounded-full text-xs font-semibold",
                       out.result.fraud_report.fraud_detected
                         ? "bg-red-500/20 text-red-300 border border-red-500/30"
-                        : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30",
-                    )}
-                  >
-                    {String(out.result.fraud_report.fraud_detected)}
-                  </span>
+                        : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+                    )}>
+                      {out.result.fraud_report.fraud_detected
+                        ? "Fraud Detected"
+                        : "Clean Invoice"}
+                    </div>
+                  )}
+
                 </div>
 
                 <div className="p-3 bg-black/40 rounded-lg border border-white/10">
@@ -276,28 +279,29 @@ export default function ScanPage() {
                     <div
                       className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full"
                       style={{
-                        width: `${Math.min(out.result.fraud_report.severity_score, 100)}%`,
+                        width: `${Math.min(out?.result?.fraud_report?.severity_score ?? 0, 100)
+                          }%`,
                       }}
                     />
                   </div>
-                  <p className="text-xs text-white/60 mt-2">{out.result.fraud_report.severity_score}/100</p>
+                  <p className="text-xs text-white/60 mt-2">{out.result?.fraud_report?.severity_score}/100</p>
                 </div>
 
                 <div className="p-3 bg-black/40 rounded-lg border border-white/10">
                   <p className="font-semibold mb-2">Scan ID</p>
-                  <p className="text-xs font-mono text-emerald-400 break-all">{out.scanId}</p>
+                  <p className="text-xs font-mono text-emerald-400 break-all">{out?.scanId}</p>
                 </div>
 
                 <div className="p-3 bg-black/40 rounded-lg border border-white/10">
                   <p className="font-semibold mb-2">Reasoning</p>
-                  <p className="text-xs text-white/70 leading-relaxed">{out.result.fraud_report.reasoning}</p>
+                  <p className="text-xs text-white/70 leading-relaxed">{out?.result?.fraud_report?.reasoning}</p>
                 </div>
 
-                {out.result.fraud_report.suspicious_terms.length > 0 && (
+                {out?.result?.fraud_report?.suspicious_terms?.length > 0 && (
                   <div>
                     <h4 className="font-semibold text-amber-300 mb-2 text-sm">⚠️ Suspicious Charges</h4>
                     <div className="space-y-2">
-                      {out.result.fraud_report.suspicious_terms.map((term: string, i: number) => (
+                      {out.result?.fraud_report?.suspicious_terms.map((term: string, i: number) => (
                         <div
                           key={i}
                           className="p-2 bg-amber-500/10 border border-amber-500/30 rounded-lg text-xs text-amber-200"
@@ -309,11 +313,11 @@ export default function ScanPage() {
                   </div>
                 )}
 
-                {out.result.fraud_report.invalid_gst_values.length > 0 && (
+                {out?.result?.fraud_report?.invalid_gst_values.length > 0 && (
                   <div>
                     <h4 className="font-semibold text-orange-300 mb-2 text-sm">Invalid GST Values</h4>
                     <div className="space-y-2">
-                      {out.result.fraud_report.invalid_gst_values.map((gst: string, i: number) => (
+                      {out?.result?.fraud_report?.invalid_gst_values.map((gst: string, i: number) => (
                         <div
                           key={i}
                           className="p-2 bg-orange-500/10 border border-orange-500/30 rounded-lg text-xs text-orange-200"

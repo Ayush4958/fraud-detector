@@ -1,4 +1,5 @@
-import { openai } from "../lib/openAi.js";
+import { openai, isDevMode } from "../lib/openAi.js";
+import { generateMockFraudAnalysis } from "../lib/mockResponses.js";
 
 const FRAUD_RULES_PROMPT = `You are an expert Financial Forensic Auditor and Fraud Billing Inspector.
 
@@ -55,7 +56,7 @@ FINAL RESPONSE MUST BE RAW JSON USING THIS FORMAT:
 
 Where:
 - "reasoning" briefly explains findings (1-2 sentences maximum)
-- If nothing suspicious, return empty arrays and “No fraud indicators found.”
+- If nothing suspicious, return empty arrays and "No fraud indicators found."
 
 Important:
 - Do not include any text before or after JSON.
@@ -64,6 +65,13 @@ Important:
 `
 
 export async function analyzeFraud(text) {
+  // Check if dev mode is enabled
+  if (isDevMode()) {
+    console.log('🔧 Running in DEV MODE - Using mock fraud analysis');
+    return generateMockFraudAnalysis(text);
+  }
+
+  console.log('🤖 Running in OPENAI MODE - Using OpenAI API for fraud analysis');
   const response = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [

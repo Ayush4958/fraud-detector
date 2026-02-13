@@ -1,9 +1,10 @@
 import express from "express";
-import { authMiddleware} from "../middlewares/auth.js";
+import { authMiddleware } from "../middlewares/auth.js";
 import { downloadCounterBillPDF } from "../controllers/pdf.js";
 
 const router = express.Router();
 
-router.get("/counter-bill/pdf/:counterBillId", downloadCounterBillPDF);
+// PDF download route - matches frontend call to /api/pdf/:counterId
+router.get("/pdf/:counterId", authMiddleware, downloadCounterBillPDF);
 
 export default router;

@@ -1,5 +1,6 @@
 // src/services/letterAi.js
-import { openai } from "../lib/openAi.js"; // adjust path if needed
+import { openai, isDevMode } from "../lib/openAi.js"; // adjust path if needed
+import { generateMockLetter } from "../lib/mockResponses.js";
 
 /**
  * Uses a small OpenAI model to generate:
@@ -9,6 +10,14 @@ import { openai } from "../lib/openAi.js"; // adjust path if needed
  * It relies on the already computed hybrid summary, not on raw text alone.
  */
 export async function generateLetter({ originalText, fraudReport, hybridSummary }) {
+  // Check if dev mode is enabled
+  if (isDevMode()) {
+    console.log('🔧 Running in DEV MODE - Using mock letter generation');
+    return generateMockLetter({ originalText, fraudReport, hybridSummary });
+  }
+
+  console.log('🤖 Running in OPENAI MODE - Using OpenAI API for letter generation');
+
   const prompt = `
 You are helping a customer understand and dispute an overcharged or unfair invoice.
 You are NOT a lawyer, so do not give legal advice. Just explain and draft a polite letter.
